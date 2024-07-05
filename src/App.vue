@@ -1,3 +1,8 @@
+nome de variaveis
+tags
+reactive
+validar senha
+
 <script setup>
 import { ref } from 'vue'
 const enviado = ref(false)
@@ -75,8 +80,23 @@ function handleFileUpload(e) {
         <h3>{{usuario.email}}</h3>
       </div>
       </section>
-      
-      <p v-for="(value, key) of usuario" :key="key">{{ key }}: {{ value }}</p>
+      <div class="informacoes-usuario">
+      <section class="container endereco">
+        <span>Cep:{{usuario.cep}}</span>
+        <span>Cidade:{{usuario.estado}}</span>
+        <span>Santa Catarina:{{usuario.estado}}</span>
+      </section></div>
+      <div class="container-biografia-preferidos">
+      <section class="container biografia">
+        <h1>Biografia</h1>
+        <span>{{usuario.biografia}}</span>
+      </section>
+      <section class="container preferidos">
+        <span>Linguagem preferida:{{usuario.linguagem}}</span>
+        <span>Hobbies:{{usuario.hobbies}}</span>
+      </section>
+    </div>
+      <!-- <p v-for="(value, key) of usuario" :key="key">{{ key }}: {{ value }}</p> -->
     </div>
     <div v-else>
       <img src="../src/perfil (2).png" width="40px">
@@ -187,14 +207,18 @@ function handleFileUpload(e) {
 </template>
 "
 <style scoped>
+.informacoes-usuario{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 h1 {
   color: white;
   display: inline;
 }
 
 img {
-  width: 150px;
-  border-radius: 50%;
+  width: 50px;
   margin-bottom: 20px;
   margin-right: 13px;
 }
@@ -253,13 +277,46 @@ img {
 .informacoes-principais h1{
   display: inline;
   color: #4D4B4B;
+  font-size: 35px;
 }
 .informacoes-principais h2{
+  display: inline;
+  font-size: 35px;
+  color: #4D4B4B;
+  margin-left: 10px;
+}
+.informacoes-principais h3{
   font-size: 22px;
   color: #4D4B4B;
-  margin-left: 5px;
 }
-img{
-  border-radius: 50%;
+.informacoes-principais img{
+    width: 130px;
+    border-radius: 50%;
+    border: 3px solid #4D4B4B;
+    margin-bottom: 20px;
+    margin-right: 13px;
+    border-radius: 50%;
+}
+.container-biografia-preferidos{
+  display: flex;
+}
+.container{
+  border-radius: 15px;
+  border: 2px solid #ffffff;
+  margin: 40px;
+  background-color: #6b0d9725;
+  padding: 10px;
+  width:max-content;
+}
+.endereco{
+  margin: 40px;
+  background-color: #6b0d9725;
+  padding: 10px;
+  width:max-content;
+}
+.endereco span{
+  color: white;
+  font-size: 20px;
+  margin: 50px;
 }
 </style>
