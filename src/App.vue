@@ -1,24 +1,24 @@
 <script setup>
 import { ref } from 'vue'
-const enviado=ref(false)
+const enviado = ref(false)
 
 function enviar() {
   enviado.value = true
 }
 
-const usuario=ref(
+const usuario = ref(
   {
-    nome:'',
-    sobrenome:'',
-    idade:'',
-    senha:'',
-    cep:'',
-    estado:'',
-    cidade:'',
-    biografia:'',
-    hobbies:[],
-    linguagem:'',
-    avatar:''    
+    nome: '',
+    sobrenome: '',
+    idade: '',
+    senha: '',
+    cep: '',
+    estado: '',
+    cidade: '',
+    biografia: '',
+    hobbies: [],
+    linguagem: '',
+    avatar: ''
   }
 )
 const estados = [
@@ -62,115 +62,128 @@ function handleFileUpload(e) {
 
 <template>
   <div class="main">
-    <div v-if="enviado">
+    <!-- <div v-if="enviado">
       <img v-if="usuario.avatar" class="avatar" :src="usuario.avatar" />
+      <p v-for="(value, key) of usuario" :key="key">{{ key }}: {{ value }}</p>
+    </div> -->
+    <div class="perfil-usuario" v-if="enviado">
+      <section class="informacoes-principais">
+        <img v-if="usuario.avatar" class="avatar" :src="usuario.avatar" />
+        <div class="nome-email">
+        <h1>{{usuario.nome}}</h1>
+        <h2>{{usuario.sobrenome}}</h2>
+        <h3>{{usuario.email}}</h3>
+      </div>
+      </section>
+      
       <p v-for="(value, key) of usuario" :key="key">{{ key }}: {{ value }}</p>
     </div>
     <div v-else>
-    <img src="../src/perfil (2).png" width="40px">
-    <h1>Perfil</h1>
-    <form @submit.prevent="enviar()" validate class="row g-4">
-      <div class="col-md-5">
-        <input v-model="usuario.nome" type="text" class="form-control" id="inputEmail4" placeholder="nome">
-      </div>
-      <div class="col-md-5">
-        <input v-model="usuario.sobrenome" type="text" class="form-control" id="inputPassword4" placeholder="sobrenome">
-      </div>
-      <div class="col-md-2">
-        <input v-model="usuario.idade" type="number" class="form-control" id="inputPassword4" placeholder="idade">
-      </div>
-      <div class="col-4">
-        <input v-model="usuario.email" type="email" class="form-control" id="inputEmail4" placeholder="email">
-      </div>
-      <div class="col-md-4">
-        <input v-model="usuario.senha" type="password" class="form-control" id="inputPassword4" placeholder="insira sua senha">
-      </div>
-      <div class="col-md-4">
-        <input type="password" class="form-control" id="inputPassword4" placeholder=" confirme sua senha">
-      </div>
-      <div class="col-md-2">
-        <input v-model="usuario.cep" type="text" class="form-control" id="inputZip" placeholder="CEP">
-      </div>
-      <div class="col-md-4">
-        <select v-model="usuario.estado" id="inputState" class="form-select" placeholder="estado">
-          <option selected disabled>Estado</option>
-          <option v-for="option in estados" :key="option">
-            {{ option.sigla }}
-          </option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <input v-model="usuario.cidade" type="text" class="form-control" id="inputCity" placeholder="cidade">
-      </div>
+      <img src="../src/perfil (2).png" width="40px">
+      <h1>Perfil</h1>
+      <form @submit.prevent="enviar()" validate class="row g-4">
+        <div class="col-md-5">
+          <input v-model="usuario.nome" type="text" class="form-control" id="inputEmail4" placeholder="nome">
+        </div>
+        <div class="col-md-5">
+          <input v-model="usuario.sobrenome" type="text" class="form-control" id="inputPassword4" placeholder="sobrenome">
+        </div>
+        <div class="col-md-2">
+          <input v-model="usuario.idade" type="number" class="form-control" id="inputPassword4" placeholder="idade">
+        </div>
+        <div class="col-4">
+          <input v-model="usuario.email" type="email" class="form-control" id="inputEmail4" placeholder="email">
+        </div>
+        <div class="col-md-4">
+          <input v-model="usuario.senha" type="password" class="form-control" id="inputPassword4"
+            placeholder="insira sua senha">
+        </div>
+        <div class="col-md-4">
+          <input type="password" class="form-control" id="inputPassword4" placeholder=" confirme sua senha">
+        </div>
+        <div class="col-md-2">
+          <input v-model="usuario.cep" type="text" class="form-control" id="inputZip" placeholder="CEP">
+        </div>
+        <div class="col-md-4">
+          <select v-model="usuario.estado" id="inputState" class="form-select" placeholder="estado">
+            <option selected disabled>Estado</option>
+            <option v-for="option in estados" :key="option">
+              {{ option.sigla }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <input v-model="usuario.cidade" type="text" class="form-control" id="inputCity" placeholder="cidade">
+        </div>
 
-      <div class="col-4">
-        <textarea v-model="usuario.biografia" cols="35" rows="6" placeholder="Biografia" class="form-control" />
-      </div>
-      <div class="col-2 ">
-        <h1 class="categorias">Hobbies:</h1>
-        <div class="form-check">
-          <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="esportes" value="Esportes">
-          <label class="form-check-label" for="esportes">
-            Esportes
-          </label>
+        <div class="col-4">
+          <textarea v-model="usuario.biografia" cols="35" rows="6" placeholder="Biografia" class="form-control" />
         </div>
-        <div class="form-check">
-          <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="ler" value="Ler">
-          <label class="form-check-label" for="ler">
-            Ler
-          </label>
+        <div class="col-2 ">
+          <h1 class="categorias">Hobbies:</h1>
+          <div class="form-check">
+            <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="esportes" value="Esportes">
+            <label class="form-check-label" for="esportes">
+              Esportes
+            </label>
+          </div>
+          <div class="form-check">
+            <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="ler" value="Ler">
+            <label class="form-check-label" for="ler">
+              Ler
+            </label>
+          </div>
+          <div class="form-check">
+            <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="cozinhar" value="Cozinhar">
+            <label class="form-check-label" for="cozinhar">
+              Cozinhar
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="games" value="Games">
+            <label class="form-check-label" for="games">
+              Games
+            </label>
+          </div>
         </div>
-        <div class="form-check">
-          <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="cozinhar" value="Cozinhar">
-          <label class="form-check-label" for="cozinhar">
-            Cozinhar
-          </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input v-model="usuario.hobbies" class="form-check-input" type="checkbox" name="games" value="Games">
-          <label class="form-check-label" for="games">
-            Games
-          </label>
-        </div>
-      </div>
 
-      <div class="col-2 ">
-        <h1 class="categorias">Best language:</h1>
-        <div class="form-check">
-          <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="Python">
-          <label class="form-check-label" for="language">
-            Python
-          </label>
+        <div class="col-2 ">
+          <h1 class="categorias">Best language:</h1>
+          <div class="form-check">
+            <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="Python">
+            <label class="form-check-label" for="language">
+              Python
+            </label>
+          </div>
+          <div class="form-check">
+            <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="PHP">
+            <label class="form-check-label" for="language">
+              PHP
+            </label>
+          </div>
+          <div class="form-check">
+            <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="Java">
+            <label class="form-check-label" for="language">
+              Java
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="Javascript">
+            <label class="form-check-label" for="language">
+              Javascript
+            </label>
+          </div>
         </div>
-        <div class="form-check">
-          <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="PHP">
-          <label class="form-check-label" for="language">
-            PHP
-          </label>
+        <div class="col-4">
+          <div class="form-check">
+            <label class="form-check-label" for="inputGroupFile01">Foto de perfil:</label>
+            <input type="file" class="form-control" id="inputGroupFile01" @change="handleFileUpload($event)">
+            <button @click="enviar()" type="submit" class="btn btn-primary">Enviar</button>
+          </div>
         </div>
-        <div class="form-check">
-          <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="Java">
-          <label class="form-check-label" for="language">
-            Java
-          </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input v-model="usuario.linguagem" class="form-check-input" type="radio" name="language" value="Javascript">
-          <label class="form-check-label" for="language">
-            Javascript
-          </label>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-check">
-          <label class="form-check-label" for="inputGroupFile01">Foto de perfil:</label>
-          <input type="file" class="form-control" id="inputGroupFile01" @change="handleFileUpload($event)" >
-          <button @click="enviar()" type="submit" class="btn btn-primary">Enviar</button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 </template>
 "
 <style scoped>
@@ -180,6 +193,8 @@ h1 {
 }
 
 img {
+  width: 150px;
+  border-radius: 50%;
   margin-bottom: 20px;
   margin-right: 13px;
 }
@@ -226,5 +241,25 @@ img {
   width: 200px;
   height: 50px;
   background-color: rgba(218, 139, 255, 0.459);
+}
+.informacoes-principais{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nome-email{
+  padding: 20px;
+}
+.informacoes-principais h1{
+  display: inline;
+  color: #4D4B4B;
+}
+.informacoes-principais h2{
+  font-size: 22px;
+  color: #4D4B4B;
+  margin-left: 5px;
+}
+img{
+  border-radius: 50%;
 }
 </style>
