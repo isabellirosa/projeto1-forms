@@ -14,7 +14,7 @@ const usuario = reactive({
   biografia: "",
   hobbies: [],
   linguagem: "",
-  avatar: "",
+  avatar: ""
 });
 
 const validacao = computed(() =>
@@ -91,6 +91,7 @@ function handleFileUpload(e) {
         <section class="container biografia">
           <h1>Biografia</h1>
           <span>{{ usuario.biografia }}</span>
+          <span style="display: block;">Data de nascimento: {{ usuario.nascimento }}</span>
         </section>
         <section class="container preferidos">
           <div>
